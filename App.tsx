@@ -4,15 +4,16 @@ import Welcome from "./Components/Welcome";
 import useGemini from "./Components/hooks/useGemini";
 
 export default function App() {
-  const { text, loading, error, fetchGeminiText } = useGemini(
-    "Suggests 5 Dog names?"
-  );
+  const { text, loading, error, fetchGeminiText } = useGemini();
   console.log("Text: ", text);
   console.log("loading: ", loading);
   return (
     <View style={styles.container}>
       <Welcome />
-      <Button title='Fetch Text' onPress={fetchGeminiText} />
+      <Button
+        title='Fetch Text'
+        onPress={() => fetchGeminiText("Suggests 5 Dog names?")}
+      />
       {loading && <Text>Loading...</Text>}
       {error && <Text>Something Went Wrong!</Text>}
       {text && <Text>{text}</Text>}

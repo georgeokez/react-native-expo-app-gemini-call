@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const useGemini = (prompt: string) => {
+const useGemini = () => {
   const API_KEY = process.env.GEMINI_API_KEY || "";
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -10,7 +10,7 @@ const useGemini = (prompt: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
-  const fetchGeminiText = async () => {
+  const fetchGeminiText = async (prompt: string) => {
     setLoading(true);
     try {
       const result = await model.generateContent(prompt);
